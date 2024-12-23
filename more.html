@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>More - KGS M RAIHAN NURHADI</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<body>
+    <header>
+        <h1>HikiNarou</h1>
+    </header>
+
+    <main class="more-content">
+        <section class="projects-section">
+            <h2 class="animated-heading">My Projects</h2>
+            <div class="grid-container">
+                <article class="project-card">
+                    <h3>Project 1 Title</h3>
+                    <p>Deskripsi singkat tentang proyek pertama Anda. Teknologi yang digunakan, tujuan, dan statusnya.</p>
+                    <div class="project-links">
+                        <a href="#" target="_blank" aria-label="View Project 1"><i class="fas fa-eye"></i></a>
+                        <a href="#" target="_blank" aria-label="GitHub Repo 1"><i class="fab fa-github"></i></a>
+                    </div>
+                </article>
+                <article class="project-card">
+                    <h3>Project 2 Title</h3>
+                    <p>Deskripsi singkat tentang proyek kedua Anda.</p>
+                    <div class="project-links">
+                        <a href="#" target="_blank" aria-label="View Project 2"><i class="fas fa-eye"></i></a>
+                        <a href="#" target="_blank" aria-label="GitHub Repo 2"><i class="fab fa-github"></i></a>
+                    </div>
+                </article>
+                <!-- Tambahkan lebih banyak card proyek di sini -->
+            </div>
+        </section>
+
+        <section class="thoughts-section">
+            <h2 class="animated-heading">Thoughts & Rants</h2>
+            <div class="card-container">
+                <article class="thought-card">
+                    <h3>Judul Pemikiran/Curhatan 1</h3>
+                    <p>Isi dari pemikiran atau curhatan Anda. Ini bisa berupa opini, pengalaman, atau apapun yang ingin Anda bagikan.</p>
+                </article>
+                <article class="thought-card">
+                    <h3>Judul Pemikiran/Curhatan 2</h3>
+                    <p>Isi pemikiran/curhatan lainnya.</p>
+                </article>
+                <!-- Tambahkan lebih banyak card pemikiran di sini -->
+            </div>
+        </section>
+
+        <section class="hobbies-section">
+            <h2 class="animated-heading">My Hobbies</h2>
+            <div class="card-container">
+                <article class="hobby-card">
+                    <h3>Hobi 1</h3>
+                    <p>Deskripsi tentang hobi Anda, mengapa Anda menyukainya, atau pencapaian terkait hobi tersebut.</p>
+                </article>
+                <article class="hobby-card">
+                    <h3>Hobi 2</h3>
+                    <p>Deskripsi hobi lainnya.</p>
+                </article>
+                <!-- Tambahkan lebih banyak card hobi di sini -->
+            </div>
+        </section>
+    </main>
+
+    <nav>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="more.html" class="active">More</a></li>
+        </ul>
+    </nav>
+
+    <div class="music-overlay">
+        <div class="music-info">
+            <span id="currentSong">No music selected</span>
+        </div>
+        <div class="music-controls">
+            <button id="playPause"><i class="fas fa-play"></i></button>
+            <button id="togglePlaylist"><i class="fas fa-list"></i></button>
+        </div>
+        <div class="music-playlist" id="playlist">
+            <!-- Playlist will be populated by JavaScript -->
+        </div>
+        <audio id="audio" loop></audio>
+    </div>
+
+    <script>
+        // Music Player Functionality (sama seperti di halaman lain)
+        document.addEventListener('DOMContentLoaded', () => {
+            initializeMusicPlayer();
+        });
+
+        function initializeMusicPlayer() {
+            const audio = document.getElementById('audio');
+            const playPauseButton = document.getElementById('playPause');
+            const currentSongDisplay = document.getElementById('currentSong');
+            const playlistButton = document.getElementById('togglePlaylist');
+            const playlistDiv = document.getElementById('playlist');
+
+            const songs = [
+                { name: 'Celestial', source: 'https://cdn.pixabay.com/download/audio/2023/10/26/audio_90d44443a2.mp3?filename=celestial-145844.mp3' },
+                { name: 'Inspiring Cinematic Ambient', source: 'https://cdn.pixabay.com/download/audio/2023/03/16/audio_8a81b57203.mp3?filename=inspiring-cinematic-ambient-116199.mp3' },
+                // Tambahkan lebih banyak lagu di sini
+            ];
+
+            let currentSongIndex = 0;
+
+            function loadSong(index) {
+                audio.src = songs[index].source;
+                currentSongDisplay.textContent = songs[index].name;
+            }
+
+            function playMusic() {
+                audio.play().catch(error => {
+                    console.error("Autoplay dicegah:", error);
+                    // Opsional: tampilkan pesan ke pengguna untuk berinteraksi dengan halaman untuk memulai musik
+                });
+                playPauseButton.innerHTML = '<i class="fas fa-pause"></i>';
+            }
+
+            function pauseMusic() {
+                audio.pause();
+                playPauseButton.innerHTML = '<i class="fas fa-play"></i>';
+            }
+
+            // Muat lagu pertama saat inisialisasi
+            loadSong(currentSongIndex);
+
+            playPauseButton.addEventListener('click', () => {
+                if (audio.paused) {
+                    playMusic();
+                } else {
+                    pauseMusic();
+                }
+            });
+
+            // Isi playlist
+            songs.forEach((song, index) => {
+                const songButton = document.createElement('button');
+                songButton.textContent = song.name;
+                songButton.addEventListener('click', () => {
+                    currentSongIndex = index;
+                    loadSong(currentSongIndex);
+                    playMusic();
+                    playlistDiv.classList.remove('show'); // Sembunyikan playlist setelah dipilih
+                });
+                playlistDiv.appendChild(songButton);
+            });
+
+            playlistButton.addEventListener('click', () => {
+                playlistDiv.classList.toggle('show');
+            });
+
+            // Autoplay saat dimuat (percobaan, mungkin diblokir oleh browser)
+            playMusic();
+        }
+    </script>
+</body>
+</html>
