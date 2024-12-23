@@ -736,6 +736,13 @@ nav a:hover, nav a.active {
     gap: 10px;
   }
 
+.skill-item i {
+    font-size: 2.5em; /* Sesuaikan ukuran ikon */
+    margin-bottom: 12px;
+    color: #eee; /* Warna ikon */
+    text-shadow: 2px 2px 3px rgba(0, 0, 0, 0.5); /* Efek bayangan */
+}
+
   .skill-item img {
     width: 30px;
   }
