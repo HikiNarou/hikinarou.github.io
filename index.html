@@ -26,19 +26,19 @@
             <h1>HikiNarou</h1>
         </header>
 
-        <section class="profile">
+        <section class="profile" id="profile-section">
             <div class="profile-image-container">
-                <img src="https://i.ibb.co.com/qpnG8GS/EUPHYY1.jpg" alt="Raihan Nurhadi Avatar" class="profile-image">
+                <img src="https://i.ibb.co/qpnG8GS/EUPHYY1.jpg" alt="Raihan Nurhadi Avatar" class="profile-image">
             </div>
             <div class="profile-text">
-                <p class="hello">Hello Friend, i'm</p>
+                <p class="hello">Hello Friend, I'm</p>
                 <h2>KIAGUS MUHAMMAD RAIHAN NURHADI</h2>
                 <p class="welcome">Glad you're here! 👋</p>
-                <h3 class="developer-text">Game Developer<span class="cursor"></span></h3>
+                <h3 class="developer-text">Front-End Web Developer<span class="cursor"></span></h3>
             </div>
         </section>
 
-        <div class="social-icons profile-social-icons"> <!-- Kelas baru untuk penempatan di profil -->
+        <div class="social-icons profile-social-icons">
             <a href="https://www.instagram.com/hikinarou" target="_blank" aria-label="Instagram">
                 <i class="fab fa-instagram"></i>
             </a>
@@ -51,25 +51,25 @@
             <ul>
                 <li><a href="index.html" class="active">Home</a></li>
                 <li><a href="about.html">About</a></li>
-                <li><a href="#">More</a></li>
+                <li><a href="#profile-section">More</a></li>
             </ul>
         </nav>
     </div>
 
     <script>
         const developerTextSpan = document.querySelector('.developer-text');
-        const text = "Game Developer";
+        const text = "Front-End Web Developer";
         let index = 0;
         const typingSpeed = 150;
 
         function type() {
             const cursorSpan = document.querySelector('.cursor');
             if (index < text.length) {
-                developerTextSpan.textContent += text.charAt(index);
+                developerTextSpan.innerHTML = text.substring(0, index + 1) + '<span class="cursor"></span>';
                 index++;
                 setTimeout(type, typingSpeed);
             } else {
-                cursorSpan.style.display = 'none';
+                cursorSpan.style.animation = 'blink-cursor 0.7s step-end infinite';
             }
         }
 
@@ -78,11 +78,9 @@
             const splashScreen = document.querySelector('.splash-screen');
             const content = document.querySelector('.content');
 
-            // Cek apakah ini kunjungan pertama
             if (sessionStorage.getItem('visited') !== 'true') {
-                sessionStorage.setItem('visited', 'true'); // Tandai sebagai sudah dikunjungi
-
-                content.style.display = 'none'; // Pastikan konten tersembunyi
+                sessionStorage.setItem('visited', 'true');
+                content.style.display = 'none';
 
                 const loadingProgress = document.querySelector('.loading-progress');
                 const loadingText = document.querySelector('.loading-text');
@@ -113,12 +111,31 @@
                     }
                 }, 20);
             } else {
-                // Jika bukan kunjungan pertama, langsung tampilkan konten
                 splashScreen.style.display = 'none';
                 content.style.display = 'flex';
                 document.body.style.overflow = 'auto';
                 type();
             }
+
+            // Smooth Scrolling for Internal Links
+            const navLinks = document.querySelectorAll('nav a');
+
+            navLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    if (this.getAttribute('href').startsWith('#')) {
+                        e.preventDefault();
+                        const targetId = this.getAttribute('href');
+                        const targetElement = document.querySelector(targetId);
+
+                        if (targetElement) {
+                            window.scrollTo({
+                                top: targetElement.offsetTop,
+                                behavior: 'smooth'
+                            });
+                        }
+                    }
+                });
+            });
         });
     </script>
 </body>
