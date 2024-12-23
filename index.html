@@ -56,6 +56,20 @@
         </nav>
     </div>
 
+<div class="music-overlay">
+    <div class="music-info">
+        <span id="currentSong">No music selected</span>
+    </div>
+    <div class="music-controls">
+        <button id="playPause"><i class="fas fa-play"></i></button>
+        <button id="togglePlaylist"><i class="fas fa-list"></i></button>
+    </div>
+    <div class="music-playlist" id="playlist">
+        <!-- Playlist will be populated by JavaScript -->
+    </div>
+    <audio id="audio" loop></audio>
+</div>
+
     <script>
         const developerTextSpan = document.querySelector('.developer-text');
         const text = "Front-End Web Developer";
@@ -107,6 +121,7 @@
                             content.style.display = 'flex';
                             document.body.style.overflow = 'auto';
                             type();
+                            initializeMusicPlayer(); // Initialize music player after content is shown
                         }, 500);
                     }
                 }, 20);
@@ -115,6 +130,7 @@
                 content.style.display = 'flex';
                 document.body.style.overflow = 'auto';
                 type();
+                initializeMusicPlayer(); // Initialize music player if splash screen is skipped
             }
 
             // Smooth Scrolling for Internal Links
@@ -137,6 +153,72 @@
                 });
             });
         });
+
+        // Music Player Functionality
+        function initializeMusicPlayer() {
+            const audio = document.getElementById('audio');
+            const playPauseButton = document.getElementById('playPause');
+            const currentSongDisplay = document.getElementById('currentSong');
+            const playlistButton = document.getElementById('togglePlaylist');
+            const playlistDiv = document.getElementById('playlist');
+        
+            const songs = [
+                { name: 'Celestial', source: 'https://cdn.pixabay.com/download/audio/2023/10/26/audio_90d44443a2.mp3?filename=celestial-145844.mp3' },
+                { name: 'Inspiring Cinematic Ambient', source: 'https://cdn.pixabay.com/download/audio/2023/03/16/audio_8a81b57203.mp3?filename=inspiring-cinematic-ambient-116199.mp3' },
+                // Tambahkan lebih banyak lagu di sini
+            ];
+        
+            let currentSongIndex = 0;
+        
+            function loadSong(index) {
+                audio.src = songs[index].source;
+                currentSongDisplay.textContent = songs[index].name;
+            }
+        
+            function playMusic() {
+                audio.play().catch(error => {
+                    console.error("Autoplay dicegah:", error);
+                    // Opsional: tampilkan pesan ke pengguna untuk berinteraksi dengan halaman untuk memulai musik
+                });
+                playPauseButton.innerHTML = '<i class="fas fa-pause"></i>';
+            }
+        
+            function pauseMusic() {
+                audio.pause();
+                playPauseButton.innerHTML = '<i class="fas fa-play"></i>';
+            }
+        
+            // Muat lagu pertama saat inisialisasi
+            loadSong(currentSongIndex);
+        
+            playPauseButton.addEventListener('click', () => {
+                if (audio.paused) {
+                    playMusic();
+                } else {
+                    pauseMusic();
+                }
+            });
+        
+            // Isi playlist
+            songs.forEach((song, index) => {
+                const songButton = document.createElement('button');
+                songButton.textContent = song.name;
+                songButton.addEventListener('click', () => {
+                    currentSongIndex = index;
+                    loadSong(currentSongIndex);
+                    playMusic();
+                    playlistDiv.classList.remove('show'); // Sembunyikan playlist setelah dipilih
+                });
+                playlistDiv.appendChild(songButton);
+            });
+        
+            playlistButton.addEventListener('click', () => {
+                playlistDiv.classList.toggle('show');
+            });
+        
+            // Autoplay saat dimuat (percobaan, mungkin diblokir oleh browser)
+            playMusic();
+        }
     </script>
 </body>
 </html>
