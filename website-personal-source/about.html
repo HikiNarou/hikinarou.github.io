@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Me - KGS M RAIHAN NURHADI</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;700&display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;700&display=swap">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<body>
+    <header>
+        <h1>HikiNarou</h1>
+    </header>
+
+    <section class="about-content">
+        <h2 class="animated-heading">About Me</h2>
+        <div class="about-image-container">
+            <img src="https://i.ibb.co/qpnG8GS/EUPHYY1.jpg" alt="Raihan Nurhadi Avatar">
+        </div>
+        <div class="animated-text-container">
+            <p class="animated-paragraph">
+                Halo semuanya, saya Raihan Nurhadi, seorang <span class="highlight">Front-End Developer</span> dari Palembang, Sumatera Selatan. Saat ini saya adalah mahasiswa di Politeknik Negeri Sriwijaya, jurusan Manajemen Informatika. Saya sangat menikmati apa yang sedang saya lakukan saat ini karena menurut saya, membuat program itu sangat menyenangkan. Selain pemrograman, hobi saya meliputi bermain voli, membuat program baru yang friendly dan interaktif, menonton anime, dan membaca manga dan novel juga!. Jangan ragu untuk menghubungi saya, terutama jika Anda ingin berbagi pemikiran. Hehe..
+            </p>
+        </div>
+    </section>
+
+    <section class="skills">
+        <h2 class="animated-heading">Skills</h2>
+        <div class="skills-container">
+            <h3>Tech Stack</h3>
+            <div class="tech-stack">
+                <div class="skill-item">
+                    <i class="fab fa-html5"></i>
+                    <p>HTML</p>
+                    <span class="skill-level advanced">advanced</span>
+                </div>
+                <div class="skill-item">
+                    <i class="fab fa-css3-alt"></i>
+                    <p>CSS</p>
+                    <span class="skill-level advanced">advanced</span>
+                </div>
+                <div class="skill-item">
+                    <i class="fab fa-js"></i>
+                    <p>JS</p>
+                    <span class="skill-level beginner">beginner</span>
+                </div>
+                <div class="skill-item">
+                    <i class="fab fa-laravel"></i>
+                    <p>Laravel</p>
+                    <span class="skill-level intermediate">intermediate</span>
+                </div>
+                <div class="skill-item">
+                    <i class="fab fa-php"></i>
+                    <p>PHP</p>
+                    <span class="skill-level intermediate">intermediate</span>
+                </div>
+                <div class="skill-item">
+                    <i class="fab fa-bootstrap"></i>
+                    <p>Bootstrap</p>
+                    <span class="skill-level intermediate">intermediate</span>
+                </div>
+                <div class="skill-item">
+                    <i class="fab fa-python"></i>
+                    <p>Python</p>
+                    <span class="skill-level beginner">beginner</span>
+                </div>
+                <div class="skill-item">
+                    <i class="fas fa-database"></i>
+                    <p>Mysql</p>
+                    <span class="skill-level intermediate">intermediate</span>
+                </div>
+                <div class="skill-item">
+                    <i class="fab fa-java"></i>
+                    <p>Java</p>
+                    <span class="skill-level intermediate">intermediate</span>
+                </div>
+                <div class="skill-item">
+                    <i class="fas fa-code"></i>
+                    <p>C</p>
+                    <span class="skill-level intermediate">intermediate</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <nav>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html" class="active">About</a></li>
+            <li><a href="#">More</a></li>
+        </ul>
+    </nav>
+
+<div class="music-overlay">
+    <div class="music-info">
+        <span id="currentSong">No music selected</span>
+    </div>
+    <div class="music-controls">
+        <button id="playPause"><i class="fas fa-play"></i></button>
+        <button id="togglePlaylist"><i class="fas fa-list"></i></button>
+    </div>
+    <div class="music-playlist" id="playlist">
+        <!-- Playlist will be populated by JavaScript -->
+    </div>
+    <audio id="audio" loop></audio>
+</div>
+
+    <script>
+        // Music Player Functionality (similar to index.html but without splash screen logic)
+        document.addEventListener('DOMContentLoaded', () => {
+            initializeMusicPlayer();
+        });
+
+        function initializeMusicPlayer() {
+            const audio = document.getElementById('audio');
+            const playPauseButton = document.getElementById('playPause');
+            const currentSongDisplay = document.getElementById('currentSong');
+            const playlistButton = document.getElementById('togglePlaylist');
+            const playlistDiv = document.getElementById('playlist');
+        
+            const songs = [
+                { name: 'Celestial', source: 'https://cdn.pixabay.com/download/audio/2023/10/26/audio_90d44443a2.mp3?filename=celestial-145844.mp3' },
+                { name: 'Inspiring Cinematic Ambient', source: 'https://cdn.pixabay.com/download/audio/2023/03/16/audio_8a81b57203.mp3?filename=inspiring-cinematic-ambient-116199.mp3' },
+                // Tambahkan lebih banyak lagu di sini
+            ];
+        
+            let currentSongIndex = 0;
+        
+            function loadSong(index) {
+                audio.src = songs[index].source;
+                currentSongDisplay.textContent = songs[index].name;
+            }
+        
+            function playMusic() {
+                audio.play().catch(error => {
+                    console.error("Autoplay dicegah:", error);
+                    // Opsional: tampilkan pesan ke pengguna untuk berinteraksi dengan halaman untuk memulai musik
+                });
+                playPauseButton.innerHTML = '<i class="fas fa-pause"></i>';
+            }
+        
+            function pauseMusic() {
+                audio.pause();
+                playPauseButton.innerHTML = '<i class="fas fa-play"></i>';
+            }
+        
+            // Muat lagu pertama saat inisialisasi
+            loadSong(currentSongIndex);
+        
+            playPauseButton.addEventListener('click', () => {
+                if (audio.paused) {
+                    playMusic();
+                } else {
+                    pauseMusic();
+                }
+            });
+        
+            // Isi playlist
+            songs.forEach((song, index) => {
+                const songButton = document.createElement('button');
+                songButton.textContent = song.name;
+                songButton.addEventListener('click', () => {
+                    currentSongIndex = index;
+                    loadSong(currentSongIndex);
+                    playMusic();
+                    playlistDiv.classList.remove('show'); // Sembunyikan playlist setelah dipilih
+                });
+                playlistDiv.appendChild(songButton);
+            });
+        
+            playlistButton.addEventListener('click', () => {
+                playlistDiv.classList.toggle('show');
+            });
+        
+            // Autoplay saat dimuat (percobaan, mungkin diblokir oleh browser)
+            playMusic()
+        }
+    </script>
+</body>
+</html>
