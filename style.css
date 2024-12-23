@@ -810,30 +810,23 @@ nav a:hover, nav a.active {
     }
 
     .music-overlay {
-        left: 10px;
-        bottom: 10px;
-        padding: 0.4rem 0.8rem;
-        font-size: 0.9em;
-        max-width: calc(100% - 20px);
-    }
-
-    .music-controls button {
-        font-size: 1em;
+        left: 50%; /* Center horizontally */
+        transform: translateX(-50%); /* Adjust for centering */
+        bottom: 20px;
+        padding: 0.8rem 1.2rem; /* Increase padding */
+        font-size: 1em; /* Slightly larger overall font */
+        max-width: 90%; /* Allow it to take up more width, but not full screen */
+        display: flex; /* Ensure it's a flex container */
+        justify-content: space-between; /* Keep elements spaced out */
     }
 
     .music-info {
-        font-size: 0.8em;
+        font-size: 1em; /* Match the overlay font size */
     }
 
-    .music-playlist {
-        bottom: calc(100% + 0.3rem);
-        left: 0;
-        padding: 0.5rem;
-    }
-
-    .music-playlist button {
-        font-size: 0.8em;
-        padding: 0.3rem 0.5rem;
+    .music-controls button {
+        font-size: 1.3em; /* Slightly larger icons */
+        padding: 0.6rem;
     }
 }
 
@@ -866,17 +859,19 @@ nav a:hover, nav a.active {
     }
 
     .music-overlay {
-        flex-direction: column; /* Stack controls and info on very small screens */
-        align-items: flex-start;
-        padding: 0.5rem;
-        gap: 0.3rem;
+        flex-direction: row; /* Keep in a row even on very small screens */
+        align-items: center; /* Center items vertically */
+        padding: 0.7rem 1rem; /* Adjust padding */
+        gap: 0.5rem; /* Adjust gap */
+        /* Keep the centering from the larger mobile view */
     }
 
     .music-info {
         text-align: left;
+        font-size: 0.9em; /* Slightly smaller font on very small screens */
     }
 
     .music-controls {
-        justify-content: center;
+        justify-content: flex-end; /* Push controls to the right */
     }
 }
