@@ -3,184 +3,123 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>HikiNarou - Personal</title>
+    <title>KGS M RAIHAN NURHADI - Personal Website</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 <body>
-    <div class="overlay"></div>
-
-    <header class="site-header">
-        <div class="container">
-            <div class="logo">
-                <a href="#" aria-label="Kembali ke Beranda">
-                    <svg viewBox="0 0 50 50" width="40" height="40" aria-hidden="true">
-                        <circle cx="25" cy="25" r="24" fill="currentColor" />
-                        <path d="M35.8 15.5c-.8-1.5-2.5-2.4-4.2-2.4h-1.3c-1.7 0-3.3.9-4.1 2.4l-5.7 10.5c-.8 1.5-1.1 3.2-.9 4.9.2 1.7.8 3.3 1.8 4.6l.2.2c1 1.3 2.4 2.1 3.9 2.1h1.3c1.5 0 3.1-.8 3.9-2.1l5.7-10.5zM14.2 34.5c.8 1.5 2.5 2.4 4.2 2.4h1.3c1.7 0 3.3-.9 4.1-2.4l5.7-10.5c.8-1.5 1.1-3.2.9-4.9-.2-1.7-.8-3.3-1.8-4.6l-.2-.2c-1-1.3-2.4-2.1-3.9-2.1h-1.3c-1.5 0-3.1.8-3.9 2.1l-5.7 10.5z" fill="#fff"/>
-                    </svg>
-                    <span class="logo-text">HikiNarou</span>
-                </a>
-            </div>
-            <nav class="main-nav">
-                <button class="nav-toggle" aria-label="Buka Navigasi">
-                    <i class="fas fa-bars"></i>
-                </button>
-                <ul class="nav-links">
-                    <li><a href="#" class="nav-link">Overture</a></li>
-                    <li><a href="#mahakarya" class="nav-link">Mahakarya</a></li>
-                    <li><a href="#harmoni" class="nav-link">Harmoni Tim</a></li>
-                    <li><a href="#resonansi" class="nav-link">Resonansi</a></li>
-                    <li><a href="#konklusi" class="nav-link nav-cta">Partitur Anda</a></li>
-                </ul>
-            </nav>
-        </div>
-    </header>
-
-    <main class="site-main">
-        <section class="hero hero-animated">
-            <div class="container hero-container">
-                <div class="hero-content">
-                    <h1 class="hero-title">RAIHAN NURHADI</h1>
-                    <p class="hero-subtitle">POLITEKNIK NEGERI SRIWIJAYA - D4 MANAJEMEN INFORMATIKA.</p>
-                    <div class="hero-actions">
-                        <a href="#" class="btn btn-primary btn-animated">Unveil the Symphony</a>
-                        <a href="#" class="btn btn-secondary">Our Creative Cadenza</a>
-                    </div>
+    <div class="splash-screen">
+        <div class="splash-content">
+            <img src="profile-avatar.png" alt="Logo" class="splash-logo">
+            <h2 class="splash-greeting">Welcome!</h2>
+            <div class="loading-container">
+                <div class="loading-bar">
+                    <div class="loading-progress"></div>
                 </div>
-                <div class="hero-visual hero-visual-animated">
-                    <div class="abstract-circle circle-1"></div>
-                    <div class="abstract-box box-1"></div>
-                    <div class="abstract-wave wave-1"></div>
-                </div>
-            </div>
-        </section>
-
-        <section id="mahakarya" class="works">
-            <div class="container">
-                <h2 class="section-title">Our Masterful Creations</h2>
-                <p class="section-subtitle">A showcase of our finest digital compositions.</p>
-                <div class="works-grid">
-                    <article class="work-item work-item-animated">
-                        <div class="work-image">
-                            <img src="assets/work-1.jpg" alt="Project Title One">
-                        </div>
-                        <div class="work-details">
-                            <h3>Project Title One</h3>
-                            <p>A brief description of the project and its impact.</p>
-                            <a href="#" class="btn btn-view">Explore Project</a>
-                        </div>
-                    </article>
-                    <article class="work-item work-item-animated">
-                        <div class="work-image">
-                            <img src="assets/work-2.jpg" alt="Project Title Two">
-                        </div>
-                        <div class="work-details">
-                            <h3>Project Title Two</h3>
-                            <p>Innovative solutions brought to life with passion.</p>
-                            <a href="#" class="btn btn-view">Explore Project</a>
-                        </div>
-                    </article>
-                    <article class="work-item work-item-animated">
-                        <div class="work-image">
-                            <img src="assets/work-3.jpg" alt="Project Title Three">
-                        </div>
-                        <div class="work-details">
-                            <h3>Project Title Three</h3>
-                            <p>Where creativity meets cutting-edge technology.</p>
-                            <a href="#" class="btn btn-view">Explore Project</a>
-                        </div>
-                    </article>
-                </div>
-            </div>
-        </section>
-
-        <section id="harmoni" class="team">
-            <div class="container">
-                <h2 class="section-title">The Harmonious Ensemble</h2>
-                <p class="section-subtitle">Meet the virtuosos behind our symphonies of success.</p>
-                <div class="team-grid">
-                    <div class="team-member team-member-animated">
-                        <div class="member-image">
-                            <img src="assets/team-1.jpg" alt="Team Member One">
-                        </div>
-                        <h3>The Visionary</h3>
-                        <p>Leading with innovation and insight.</p>
-                    </div>
-                    <div class="team-member team-member-animated">
-                        <div class="member-image">
-                            <img src="assets/team-2.jpg" alt="Team Member Two">
-                        </div>
-                        <h3>The Architect</h3>
-                        <p>Building the future, one line of code at a time.</p>
-                    </div>
-                    <div class="team-member team-member-animated">
-                        <div class="member-image">
-                            <img src="assets/team-3.jpg" alt="Team Member Three">
-                        </div>
-                        <h3>The Maestro of Design</h3>
-                        <p>Crafting experiences that resonate.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section id="resonansi" class="testimonials">
-            <div class="container">
-                <h2 class="section-title">Echoes of Appreciation</h2>
-                <p class="section-subtitle">Hear the resonating feedback from our valued partners.</p>
-                <div class="testimonial-slider">
-                    <blockquote class="testimonial testimonial-animated">
-                        <i class="fas fa-quote-left"></i>
-                        <p>"Their innovative approach and attention to detail have truly transformed our business. A pleasure to collaborate with!"</p>
-                        <footer class="testimonial-author">
-                            <img src="assets/client-1.jpg" alt="Client One">
-                            <span>Jane Doe, CEO of Innovate Inc.</span>
-                        </footer>
-                    </blockquote>
-                    <blockquote class="testimonial testimonial-animated">
-                        <i class="fas fa-quote-left"></i>
-                        <p>"The team's creativity and technical expertise are unparalleled. They delivered beyond our expectations, creating a truly exceptional product."</p>
-                        <footer class="testimonial-author">
-                            <img src="assets/client-2.jpg" alt="Client Two">
-                            <span>John Smith, Founder of Visionary Co.</span>
-                        </footer>
-                    </blockquote>
-                </div>
-            </div>
-        </section>
-
-        <section id="konklusi" class="contact">
-            <div class="container">
-                <h2 class="section-title">Compose Your Vision with Us</h2>
-                <p class="section-subtitle">Let's orchestrate your digital success. Reach out and begin the composition.</p>
-                <form class="contact-form">
-                    <div class="form-group">
-                        <input type="text" id="name" name="name" placeholder="Your Name" required>
-                    </div>
-                    <div class="form-group">
-                        <input type="email" id="email" name="email" placeholder="Your Email" required>
-                    </div>
-                    <div class="form-group">
-                        <textarea id="message" name="message" placeholder="Your Message" rows="5" required></textarea>
-                    </div>
-                    <button type="submit" class="btn btn-primary btn-animated">Send Your Score</button>
-                </form>
-            </div>
-        </section>
-    </main>
-
-    <footer class="site-footer">
-        <div class="container">
-            <p>© 2023 Virtuoso Innovations. All Rights Reserved.</p>
-            <div class="social-links">
-                <a href="#" aria-label="Facebook" class="social-link"><i class="fab fa-facebook-f"></i></a>
-                <a href="#" aria-label="Twitter" class="social-link"><i class="fab fa-twitter"></i></a>
-                <a href="#" aria-label="Instagram" class="social-link"><i class="fab fa-instagram"></i></a>
-                <a href="#" aria-label="LinkedIn" class="social-link"><i class="fab fa-linkedin-in"></i></a>
+                <p class="loading-text">Loading... 0%</p>
             </div>
         </div>
-    </footer>
+    </div>
 
-    <script src="script.js"></script>
+    <div class="content" style="display: none;">
+        <header>
+            <h1>HikiNarou</h1>
+        </header>
+
+        <section class="profile">
+            <div class="profile-image-container">
+                <img src="https://i.ibb.co.com/qpnG8GS/EUPHYY1.jpg" alt="Raihan Nurhadi Avatar" class="profile-image">
+            </div>
+            <div class="profile-text">
+                <p class="hello">Hello Friend, i'm</p>
+                <h2>KIAGUS MUHAMMAD RAIHAN NURHADI</h2>
+                <p class="welcome">Glad you're here! 👋</p>
+                <h3 class="developer-text">Game Developer<span class="cursor"></span></h3>
+            </div>
+        </section>
+
+        <div class="social-icons profile-social-icons"> <!-- Kelas baru untuk penempatan di profil -->
+            <a href="https://www.instagram.com/hikinarou" target="_blank" aria-label="Instagram">
+                <i class="fab fa-instagram"></i>
+            </a>
+            <a href="https://www.tiktok.com/@akun_tiktok_anda/" target="_blank" aria-label="TikTok">
+                <i class="fab fa-tiktok"></i>
+            </a>
+        </div>
+
+        <nav>
+            <ul>
+                <li><a href="index.html" class="active">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="#">More</a></li>
+            </ul>
+        </nav>
+    </div>
+
+    <script>
+        const developerTextSpan = document.querySelector('.developer-text');
+        const text = "Game Developer";
+        let index = 0;
+        const typingSpeed = 150;
+
+        function type() {
+            const cursorSpan = document.querySelector('.cursor');
+            if (index < text.length) {
+                developerTextSpan.textContent += text.charAt(index);
+                index++;
+                setTimeout(type, typingSpeed);
+            } else {
+                cursorSpan.style.display = 'none';
+            }
+        }
+
+        // Splash Screen Logic
+        document.addEventListener('DOMContentLoaded', () => {
+            const splashScreen = document.querySelector('.splash-screen');
+            const content = document.querySelector('.content');
+
+            // Cek apakah ini kunjungan pertama
+            if (sessionStorage.getItem('visited') !== 'true') {
+                sessionStorage.setItem('visited', 'true'); // Tandai sebagai sudah dikunjungi
+
+                content.style.display = 'none'; // Pastikan konten tersembunyi
+
+                const loadingProgress = document.querySelector('.loading-progress');
+                const loadingText = document.querySelector('.loading-text');
+                let progress = 0;
+
+                const interval = setInterval(() => {
+                    progress += 1;
+                    loadingProgress.style.width = `${progress}%`;
+                    loadingText.textContent = `Loading... ${progress}%`;
+
+                    if (progress === 30) {
+                        document.querySelector('.splash-greeting').textContent = "Fetching resources...";
+                    } else if (progress === 60) {
+                        document.querySelector('.splash-greeting').textContent = "Preparing interface...";
+                    } else if (progress === 90) {
+                        document.querySelector('.splash-greeting').textContent = "Almost there!";
+                    }
+
+                    if (progress >= 100) {
+                        clearInterval(interval);
+                        setTimeout(() => {
+                            splashScreen.style.opacity = '0';
+                            splashScreen.style.pointerEvents = 'none';
+                            content.style.display = 'flex';
+                            document.body.style.overflow = 'auto';
+                            type();
+                        }, 500);
+                    }
+                }, 20);
+            } else {
+                // Jika bukan kunjungan pertama, langsung tampilkan konten
+                splashScreen.style.display = 'none';
+                content.style.display = 'flex';
+                document.body.style.overflow = 'auto';
+                type();
+            }
+        });
+    </script>
 </body>
 </html>
