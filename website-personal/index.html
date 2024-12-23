@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KGS M RAIHAN NURHADI - Personal Website</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<body>
+    <div class="splash-screen">
+        <div class="splash-content">
+            <img src="profile-avatar.png" alt="Logo" class="splash-logo">
+            <h2 class="splash-greeting">Welcome!</h2>
+            <div class="loading-container">
+                <div class="loading-bar">
+                    <div class="loading-progress"></div>
+                </div>
+                <p class="loading-text">Loading... 0%</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="content" style="display: none;">
+        <header>
+            <h1>HikiNarou</h1>
+        </header>
+
+        <section class="profile" id="profile-section">
+            <div class="profile-image-container">
+                <img src="https://i.ibb.co/qpnG8GS/EUPHYY1.jpg" alt="Raihan Nurhadi Avatar" class="profile-image">
+            </div>
+            <div class="profile-text">
+                <p class="hello">Hello Friend, I'm</p>
+                <h2>KIAGUS MUHAMMAD RAIHAN NURHADI</h2>
+                <p class="welcome">Glad you're here! 👋</p>
+                <h3 class="developer-text">Front-End Web Developer<span class="cursor"></span></h3>
+            </div>
+        </section>
+
+        <div class="social-icons profile-social-icons">
+            <a href="https://www.instagram.com/hikinarou" target="_blank" aria-label="Instagram">
+                <i class="fab fa-instagram"></i>
+            </a>
+            <a href="https://www.tiktok.com/@akun_tiktok_anda/" target="_blank" aria-label="TikTok">
+                <i class="fab fa-tiktok"></i>
+            </a>
+        </div>
+
+        <nav>
+            <ul>
+                <li><a href="index.html" class="active">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="#profile-section">More</a></li>
+            </ul>
+        </nav>
+    </div>
+
+    <script>
+        const developerTextSpan = document.querySelector('.developer-text');
+        const text = "Front-End Web Developer";
+        let index = 0;
+        const typingSpeed = 150;
+
+        function type() {
+            const cursorSpan = document.querySelector('.cursor');
+            if (index < text.length) {
+                developerTextSpan.innerHTML = text.substring(0, index + 1) + '<span class="cursor"></span>';
+                index++;
+                setTimeout(type, typingSpeed);
+            } else {
+                cursorSpan.style.animation = 'blink-cursor 0.7s step-end infinite';
+            }
+        }
+
+        // Splash Screen Logic
+        document.addEventListener('DOMContentLoaded', () => {
+            const splashScreen = document.querySelector('.splash-screen');
+            const content = document.querySelector('.content');
+
+            if (sessionStorage.getItem('visited') !== 'true') {
+                sessionStorage.setItem('visited', 'true');
+                content.style.display = 'none';
+
+                const loadingProgress = document.querySelector('.loading-progress');
+                const loadingText = document.querySelector('.loading-text');
+                let progress = 0;
+
+                const interval = setInterval(() => {
+                    progress += 1;
+                    loadingProgress.style.width = `${progress}%`;
+                    loadingText.textContent = `Loading... ${progress}%`;
+
+                    if (progress === 30) {
+                        document.querySelector('.splash-greeting').textContent = "Fetching resources...";
+                    } else if (progress === 60) {
+                        document.querySelector('.splash-greeting').textContent = "Preparing interface...";
+                    } else if (progress === 90) {
+                        document.querySelector('.splash-greeting').textContent = "Almost there!";
+                    }
+
+                    if (progress >= 100) {
+                        clearInterval(interval);
+                        setTimeout(() => {
+                            splashScreen.style.opacity = '0';
+                            splashScreen.style.pointerEvents = 'none';
+                            content.style.display = 'flex';
+                            document.body.style.overflow = 'auto';
+                            type();
+                        }, 500);
+                    }
+                }, 20);
+            } else {
+                splashScreen.style.display = 'none';
+                content.style.display = 'flex';
+                document.body.style.overflow = 'auto';
+                type();
+            }
+
+            // Smooth Scrolling for Internal Links
+            const navLinks = document.querySelectorAll('nav a');
+
+            navLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    if (this.getAttribute('href').startsWith('#')) {
+                        e.preventDefault();
+                        const targetId = this.getAttribute('href');
+                        const targetElement = document.querySelector(targetId);
+
+                        if (targetElement) {
+                            window.scrollTo({
+                                top: targetElement.offsetTop,
+                                behavior: 'smooth'
+                            });
+                        }
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
