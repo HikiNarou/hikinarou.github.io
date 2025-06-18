@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Projects - HikiNarou</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        /* CSS Variables sesuai tema existing */
+        :root {
+            --bg-color: #121212;
+            --bg-secondary: #1e1e1e;
+            --text-primary: #fff;
+            --text-secondary: #eee;
+            --accent-color: #4dd0e1;
+            --shadow-color: rgba(0, 0, 0, 0.5);
+            --border-color: #333;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Space Grotesk', -apple-system, BlinkMacSystemFont, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-primary);
+            padding: 2rem 1rem;
+            min-height: 100vh;
+        }
+
+        /* Container utama */
+        .projects-container {
+            max-width: 900px;
+            margin: 0 auto;
+            background-color: var(--bg-secondary);
+            border-radius: 12px;
+            box-shadow: 0 6px 20px var(--shadow-color);
+            overflow: hidden;
+        }
+
+        /* Header section */
+        .projects-header {
+            padding: 2rem;
+            text-align: center;
+            background: linear-gradient(135deg, var(--bg-secondary) 0%, #2a2a2a 100%);
+        }
+
+        .projects-title {
+            font-size: 2em;
+            color: var(--accent-color);
+            margin-bottom: 0.5rem;
+            font-weight: 700;
+        }
+
+        .projects-subtitle {
+            color: var(--text-secondary);
+            font-size: 1em;
+        }
+
+        /* Tabel sederhana */
+        .simple-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .simple-table th {
+            background-color: var(--border-color);
+            color: var(--accent-color);
+            padding: 1rem;
+            text-align: left;
+            font-weight: 600;
+            font-size: 0.9em;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .simple-table td {
+            padding: 1.2rem 1rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            color: var(--text-secondary);
+        }
+
+        .simple-table tr:hover {
+            background-color: rgba(77, 208, 225, 0.05);
+        }
+
+        /* Project name styling */
+        .project-name {
+            color: var(--text-primary);
+            font-weight: 600;
+            font-size: 1.1em;
+        }
+
+        /* Tech tags sederhana */
+        .tech-simple {
+            display: inline-block;
+            background-color: var(--accent-color);
+            color: var(--bg-color);
+            padding: 0.2rem 0.6rem;
+            border-radius: 12px;
+            font-size: 0.8em;
+            font-weight: 500;
+            margin: 0.1rem;
+        }
+
+        /* Status badges sederhana */
+        .status {
+            padding: 0.3rem 0.8rem;
+            border-radius: 15px;
+            font-size: 0.8em;
+            font-weight: 600;
+            text-align: center;
+        }
+
+        .status-done { 
+            background-color: #004d40; 
+            color: #69f0ae; 
+        }
+        
+        .status-work { 
+            background-color: #513d00; 
+            color: #ffd740; 
+        }
+        
+        .status-idea { 
+            background-color: #59230b; 
+            color: #ffab91; 
+        }
+
+        /* Action links sederhana */
+        .actions {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .action-link {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 32px;
+            height: 32px;
+            background-color: var(--border-color);
+            color: var(--text-primary);
+            text-decoration: none;
+            border-radius: 6px;
+            transition: all 0.2s ease;
+            font-size: 0.9em;
+        }
+
+        .action-link:hover {
+            background-color: var(--accent-color);
+            color: var(--bg-color);
+            transform: scale(1.1);
+        }
+
+        /* Responsive design sederhana */
+        @media (max-width: 768px) {
+            body {
+                padding: 1rem 0.5rem;
+            }
+            
+            .projects-header {
+                padding: 1.5rem 1rem;
+            }
+            
+            .projects-title {
+                font-size: 1.6em;
+            }
+            
+            .simple-table th,
+            .simple-table td {
+                padding: 0.8rem 0.5rem;
+                font-size: 0.9em;
+            }
+            
+            .actions {
+                flex-direction: column;
+                gap: 0.3rem;
+            }
+            
+            .action-link {
+                width: 28px;
+                height: 28px;
+                font-size: 0.8em;
+            }
+        }
+
+        /* Animasi sederhana */
+        .projects-container {
+            animation: fadeIn 0.6s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from { 
+                opacity: 0; 
+                transform: translateY(20px); 
+            }
+            to { 
+                opacity: 1; 
+                transform: translateY(0); 
+            }
+        }
+
+        .simple-table tbody tr {
+            animation: slideIn 0.4s ease-out forwards;
+            opacity: 0;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateX(-10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="projects-container">
+        <!-- Header Section -->
+        <div class="projects-header">
+            <h1 class="projects-title">My Projects</h1>
+            <p class="projects-subtitle">Simple overview of my development work</p>
+        </div>
+
+        <!-- Tabel Sederhana -->
+        <table class="simple-table">
+            <thead>
+                <tr>
+                    <th>Project</th>
+                    <th>Tech</th>
+                    <th>Status</th>
+                    <th>Links</th>
+                </tr>
+            </thead>
+            <tbody id="projectsBody">
+                <tr>
+                    <td class="project-name">Personal Portfolio</td>
+                    <td>
+                        <span class="tech-simple">HTML</span>
+                        <span class="tech-simple">CSS</span>
+                        <span class="tech-simple">JS</span>
+                    </td>
+                    <td><span class="status status-done">Done</span></td>
+                    <td>
+                        <div class="actions">
+                            <a href="https://hikinarou.github.io" class="action-link" title="Live Demo">
+                                <i class="fas fa-eye"></i>
+                            </a>
+                            <a href="https://github.com/HikiNarou/hikinarou.github.io" class="action-link" title="GitHub">
+                                <i class="fab fa-github"></i>
+                            </a>
+                        </div>
+                    </td>
+                </tr>
+                
+                <tr>
+                    <td class="project-name">E-Commerce Web</td>
+                    <td>
+                        <span class="tech-simple">Laravel</span>
+                        <span class="tech-simple">MySQL</span>
+                    </td>
+                    <td><span class="status status-work">Working</span></td>
+                    <td>
+                        <div class="actions">
+                            <a href="#" class="action-link" title="Demo">
+                                <i class="fas fa-eye"></i>
+                            </a>
+                            <a href="#" class="action-link" title="GitHub">
+                                <i class="fab fa-github"></i>
+                            </a>
+                        </div>
+                    </td>
+                </tr>
+                
+                <tr>
+                    <td class="project-name">Task Manager</td>
+                    <td>
+                        <span class="tech-simple">React</span>
+                        <span class="tech-simple">Node.js</span>
+                    </td>
+                    <td><span class="status status-idea">Planning</span></td>
+                    <td>
+                        <div class="actions">
+                            <a href="#" class="action-link" title="Preview">
+                                <i class="fas fa-eye"></i>
+                            </a>
+                            <a href="#" class="action-link" title="GitHub">
+                                <i class="fab fa-github"></i>
+                            </a>
+                        </div>
+                    </td>
+                </tr>
+                
+                <tr>
+                    <td class="project-name">Weather App</td>
+                    <td>
+                        <span class="tech-simple">JS</span>
+                        <span class="tech-simple">API</span>
+                    </td>
+                    <td><span class="status status-done">Done</span></td>
+                    <td>
+                        <div class="actions">
+                            <a href="#" class="action-link" title="Live">
+                                <i class="fas fa-eye"></i>
+                            </a>
+                            <a href="#" class="action-link" title="GitHub">
+                                <i class="fab fa-github"></i>
+                            </a>
+                        </div>
+                    </td>
+                </tr>
+                
+                <tr>
+                    <td class="project-name">Restaurant System</td>
+                    <td>
+                        <span class="tech-simple">PHP</span>
+                        <span class="tech-simple">MySQL</span>
+                    </td>
+                    <td><span class="status status-done">Done</span></td>
+                    <td>
+                        <div class="actions">
+                            <a href="#" class="action-link" title="Demo">
+                                <i class="fas fa-eye"></i>
+                            </a>
+                            <a href="#" class="action-link" title="GitHub">
+                                <i class="fab fa-github"></i>
+                            </a>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <script>
+        // JavaScript sederhana untuk animasi dan interaktivitas
+        document.addEventListener('DOMContentLoaded', function() {
+            // Animasi staggered untuk rows
+            const rows = document.querySelectorAll('#projectsBody tr');
+            rows.forEach((row, index) => {
+                row.style.animationDelay = `${index * 0.1}s`;
+            });
+
+            // Hover effect sederhana
+            rows.forEach(row => {
+                row.addEventListener('mouseenter', function() {
+                    this.style.transform = 'translateX(5px)';
+                    this.style.transition = 'transform 0.2s ease';
+                });
+                
+                row.addEventListener('mouseleave', function() {
+                    this.style.transform = 'translateX(0)';
+                });
+            });
+
+            // Simple click feedback untuk action links
+            const actionLinks = document.querySelectorAll('.action-link');
+            actionLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    // Jika link kosong (#), preventDefault
+                    if (this.href.endsWith('#')) {
+                        e.preventDefault();
+                        this.style.transform = 'scale(0.9)';
+                        setTimeout(() => {
+                            this.style.transform = 'scale(1.1)';
+                        }, 100);
+                    }
+                });
+            });
+
+            console.log('🚀 Simple Portfolio Table loaded!');
+        });
+
+        // Function sederhana untuk menambah project baru
+        function addSimpleProject(name, techArray, status, demoLink, githubLink) {
+            const tbody = document.getElementById('projectsBody');
+            const newRow = document.createElement('tr');
+            
+            const techTags = techArray.map(tech => 
+                `<span class="tech-simple">${tech}</span>`
+            ).join('');
+            
+            const statusClass = status === 'Done' ? 'status-done' : 
+                               status === 'Working' ? 'status-work' : 'status-idea';
+            
+            newRow.innerHTML = `
+                <td class="project-name">${name}</td>
+                <td>${techTags}</td>
+                <td><span class="status ${statusClass}">${status}</span></td>
+                <td>
+                    <div class="actions">
+                        <a href="${demoLink}" class="action-link" title="Demo">
+                            <i class="fas fa-eye"></i>
+                        </a>
+                        <a href="${githubLink}" class="action-link" title="GitHub">
+                            <i class="fab fa-github"></i>
+                        </a>
+                    </div>
+                </td>
+            `;
+            
+            tbody.appendChild(newRow);
+        }
+
+        // Contoh penggunaan function:
+        // addSimpleProject('New Project', ['React', 'CSS'], 'Working', '#', '#');
+    </script>
+</body>
+</html>
