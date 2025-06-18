@@ -3,12 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Projects - HikiNarou</title>
+    <title>My Projects (Classic Table View) - HikiNarou</title>
+    <!-- Menggunakan Font Awesome untuk ikon -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <!-- Menggunakan Google Fonts -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;700&display=swap">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;700&display=swap">
     <style>
-        /* CSS Variables untuk tema */
+        /* ============================================== */
+        /* ==         BAGIAN 1: GLOBAL STYLES          == */
+        /* ============================================== */
         :root {
             --bg-color: #121212;
             --bg-secondary: #1e1e1e;
@@ -18,453 +22,171 @@
             --shadow-color: rgba(0, 0, 0, 0.5);
             --border-color: #333;
         }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
+        * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
-            font-family: 'Space Grotesk', -apple-system, BlinkMacSystemFont, sans-serif;
+            font-family: 'Space Grotesk', sans-serif;
             background-color: var(--bg-color);
             color: var(--text-primary);
             display: flex;
             flex-direction: column;
             align-items: center;
             min-height: 100vh;
-            overflow-x: hidden;
-            scroll-behavior: smooth;
-            font-size: 16px;
-            line-height: 1.6;
-            padding-bottom: 60px;
-            transition: background-color 0.3s ease, color 0.3s ease;
+            padding-bottom: 80px;
         }
-
-        /* Header Styles */
-        header {
-            text-align: center;
-            padding: 1.5rem 0;
-            width: 100%;
-            opacity: 0;
-            animation: fadeIn 0.5s ease-in-out 0.5s forwards;
+        header, .portfolio-container, nav {
+            width: 90%;
+            max-width: 900px;
+            margin: 0 auto;
         }
-
+        header { text-align: center; padding: 1.5rem 0; }
         header h1 {
             color: var(--accent-color);
             font-size: 2.5em;
-            margin: 0;
             font-family: 'Roboto Mono', monospace;
-            letter-spacing: 0.8px;
         }
-
-        /* Portfolio Container */
-        .portfolio-container {
-            max-width: 900px;
-            width: 90%;
-            margin: 2rem auto;
-            opacity: 0;
-            animation: fadeIn 0.5s ease-in-out 0.8s forwards;
-        }
-
-        /* Portfolio Header */
         .portfolio-header {
-            background-color: var(--bg-secondary);
-            padding: 1.5rem;
-            border-radius: 12px 12px 0 0;
-            margin-bottom: 1rem;
-            box-shadow: 0 4px 8px var(--shadow-color);
+            text-align: center;
+            margin-bottom: 2rem;
         }
-
         .portfolio-title {
             font-size: 2em;
             color: var(--accent-color);
             margin-bottom: 0.5rem;
-            font-weight: 700;
-            font-family: 'Roboto Mono', monospace;
         }
+        .portfolio-subtitle { color: var(--text-secondary); }
 
-        .portfolio-subtitle {
-            color: var(--text-secondary);
-            font-size: 1em;
-        }
-
-        /* Project Cards Section */
-        .projects-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            gap: 1.5rem;
-        }
-
-        .project-card {
+        /* ============================================== */
+        /* ==     BAGIAN 2: STYLING TABEL MODERN       == */
+        /* ============================================== */
+        
+        /* Wrapper untuk membuat tabel bisa di-scroll di layar kecil */
+        .table-container {
+            width: 100%;
+            overflow-x: auto; /* Aktifkan scroll horizontal jika perlu */
             background-color: var(--bg-secondary);
             border-radius: 10px;
-            overflow: hidden;
-            box-shadow: 0 4px 8px var(--shadow-color);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            opacity: 0;
-            animation: fadeIn 0.4s ease-out forwards;
+            box-shadow: 0 4px 12px var(--shadow-color);
         }
 
-        .project-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 6px 12px var(--shadow-color);
+        .projects-table {
+            width: 100%;
+            border-collapse: collapse; /* Menghilangkan spasi antar border */
         }
 
-        .project-header {
-            padding: 1rem;
-            border-bottom: 1px solid var(--border-color);
-        }
-
-        .project-name {
-            color: var(--text-primary);
+        /* Styling untuk Header Tabel (thead) */
+        .projects-table th {
+            background-color: #2a2a2e;
+            color: var(--text-secondary);
             font-weight: 600;
-            font-size: 1.2em;
-            margin-bottom: 0.3rem;
+            padding: 1rem;
+            text-align: left;
+            text-transform: uppercase;
+            font-size: 0.8em;
+            letter-spacing: 0.5px;
+        }
+        
+        /* Styling untuk baris tabel (tr) */
+        .projects-table tbody tr {
+            border-bottom: 1px solid var(--border-color);
+            transition: background-color 0.2s ease;
+            opacity: 0;
+            animation: fadeIn 0.5s ease-out forwards;
+        }
+        .projects-table tbody tr:last-child {
+            border-bottom: none;
+        }
+        .projects-table tbody tr:hover {
+            background-color: #2c2c2f;
         }
 
-        .project-status {
+        /* Styling untuk sel data (td) */
+        .projects-table td {
+            padding: 1rem;
+            vertical-align: middle;
+        }
+        .project-name { font-weight: 600; color: var(--text-primary); }
+
+        /* Styling untuk konten di dalam sel */
+        .tech-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+        .tech-tag {
+            background-color: #333;
+            color: var(--accent-color);
+            padding: 0.25rem 0.6rem;
+            border-radius: 5px;
+            font-size: 0.8em;
+        }
+        
+        .status-badge {
             display: inline-block;
-            padding: 0.2rem 0.6rem;
+            padding: 0.25rem 0.75rem;
             border-radius: 12px;
             font-size: 0.8em;
             font-weight: 600;
-            margin-top: 0.5rem;
+            text-align: center;
+            min-width: 70px;
         }
-
-        .status-done { 
-            background-color: #004d40; 
-            color: #69f0ae; 
-        }
+        .status-done { background-color: #004d40; color: #69f0ae; }
+        .status-work { background-color: #513d00; color: #ffd740; }
+        .status-idea { background-color: #59230b; color: #ffab91; }
         
-        .status-work { 
-            background-color: #513d00; 
-            color: #ffd740; 
-        }
-        
-        .status-idea { 
-            background-color: #59230b; 
-            color: #ffab91; 
-        }
-
-        .project-body {
-            padding: 1rem;
-        }
-
-        .tech-tags {
-            margin-bottom: 1rem;
-        }
-
-        .tech-tag {
-            display: inline-block;
-            background-color: #333;
-            color: var(--accent-color);
-            padding: 0.2rem 0.5rem;
-            border-radius: 4px;
-            font-size: 0.8em;
-            font-weight: 500;
-            margin: 0.2rem;
-        }
-
-        .project-links {
-            display: flex;
-            gap: 0.8rem;
-            margin-top: 0.8rem;
-        }
-
-        .project-link {
-            display: flex;
-            align-items: center;
-            padding: 0.5rem 1rem;
-            background-color: var(--border-color);
-            color: var(--text-primary);
+        .action-links { display: flex; gap: 0.8rem; }
+        .action-link {
+            color: var(--text-secondary);
+            font-size: 1.2em;
             text-decoration: none;
-            border-radius: 6px;
-            transition: all 0.2s ease;
-            font-size: 0.9em;
+            transition: color 0.2s ease, transform 0.2s ease;
+        }
+        .action-link:hover {
+            color: var(--accent-color);
+            transform: scale(1.1);
         }
 
-        .project-link i {
-            margin-right: 0.5rem;
-        }
-
-        .project-link:hover {
-            background-color: var(--accent-color);
-            color: var(--bg-color);
-        }
-
-        /* Navigation Menu */
+        /* ============================================== */
+        /* ==       BAGIAN 3: NAVIGASI & RESPONSIVE      == */
+        /* ============================================== */
         nav {
             background-color: var(--bg-secondary);
-            width: 100%;
-            max-width: 768px;
-            margin-top: 2rem;
+            margin-top: 2.5rem;
             border-radius: 8px;
             box-shadow: 0 0 10px var(--shadow-color);
-            opacity: 0;
-            animation: slideUp 0.5s ease-in-out 1.1s forwards;
         }
-
-        nav ul {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-            display: flex;
-            justify-content: space-around;
-        }
-
-        nav li {
-            flex-grow: 1;
-            text-align: center;
-        }
-
-        nav a {
-            display: block;
-            padding: 1rem 0;
-            color: var(--text-secondary);
-            text-decoration: none;
-            transition: background-color 0.3s ease;
-            border-bottom: 3px solid transparent;
-            font-size: 1rem;
-            position: relative;
-            overflow: hidden;
-        }
-
-        nav a::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(77, 208, 225, 0.1), transparent);
-            transition: left 0.5s;
-        }
-
-        nav a:hover::before {
-            left: 100%;
-        }
-
-        nav a:hover, nav a.active {
-            background-color: #333;
-            border-bottom-color: var(--accent-color);
-            color: var(--text-primary);
-        }
-
-        /* Animations */
-        @keyframes fadeIn {
-            from { 
-                opacity: 0; 
-                transform: translateY(20px); 
-            }
-            to { 
-                opacity: 1; 
-                transform: translateY(0); 
-            }
-        }
-
-        @keyframes slideUp {
-            from {
-                transform: translateY(10px);
-                opacity: 0;
-            }
-            to {
-                transform: translateY(0);
-                opacity: 1;
-            }
-        }
-
-        /* Responsive Styles */
-        @media (max-width: 768px) {
-            body {
-                font-size: 15px;
-                padding-bottom: 70px;
-            }
-
-            header {
-                padding: 1.2rem 0;
-            }
-
-            header h1 {
-                font-size: 2.2em;
-            }
-            
-            .portfolio-container {
-                width: 95%;
-            }
-            
-            .projects-grid {
-                grid-template-columns: 1fr;
-            }
-            
-            nav {
-                margin-top: 1.5rem;
-            }
-
-            nav a {
-                padding: 0.8rem 0;
-                font-size: 0.9rem;
-            }
-        }
+        nav ul { list-style: none; padding: 0; margin: 0; display: flex; justify-content: space-around; }
+        nav a { display: block; padding: 1rem 0; color: var(--text-secondary); text-decoration: none; transition: background-color 0.3s ease, color 0.3s ease; border-bottom: 3px solid transparent; text-align: center; }
+        nav a:hover, nav a.active { background-color: #333; border-bottom-color: var(--accent-color); color: var(--text-primary); }
+        
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+        
     </style>
 </head>
 <body>
-    <!-- Header -->
     <header>
         <h1>HikiNarou</h1>
     </header>
 
-    <!-- Portfolio Container -->
-    <div class="portfolio-container">
-        <!-- Portfolio Header -->
-        <div class="portfolio-header">
-            <h1 class="portfolio-title">My Projects</h1>
-            <p class="portfolio-subtitle">Simple overview of my development work</p>
+    <main class="portfolio-container">
+        <header class="portfolio-header">
+            <h2 class="portfolio-title">My Projects</h2>
+            <p class="portfolio-subtitle">A detailed list of my development work and contributions.</p>
+        </header>
+
+        <!-- Wrapper untuk membuat tabel responsif -->
+        <div class="table-container">
+            <table class="projects-table" aria-label="Projects List">
+                <thead>
+                    <tr>
+                        <th>Project</th>
+                        <th>Tech Stack</th>
+                        <th>Status</th>
+                        <th>Links</th>
+                    </tr>
+                </thead>
+                <tbody id="projects-table-body">
+                    <!-- Data proyek akan dimasukkan di sini oleh JavaScript -->
+                </tbody>
+            </table>
         </div>
+    </main>
 
-        <!-- Projects Grid -->
-        <div class="projects-grid" id="projectsGrid">
-            <!-- Project 1 -->
-            <div class="project-card" style="animation-delay: 0s;">
-                <div class="project-header">
-                    <h3 class="project-name">Personal Portfolio</h3>
-                    <span class="project-status status-done">Done</span>
-                </div>
-                <div class="project-body">
-                    <div class="tech-tags">
-                        <span class="tech-tag">HTML</span>
-                        <span class="tech-tag">CSS</span>
-                        <span class="tech-tag">JS</span>
-                    </div>
-                    <div class="project-links">
-                        <a href="https://hikinarou.github.io" class="project-link">
-                            <i class="fas fa-eye"></i> Demo
-                        </a>
-                        <a href="https://github.com/HikiNarou/hikinarou.github.io" class="project-link">
-                            <i class="fab fa-github"></i> GitHub
-                        </a>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Project 2 -->
-            <div class="project-card" style="animation-delay: 0.1s;">
-                <div class="project-header">
-                    <h3 class="project-name">E-Commerce Web</h3>
-                    <span class="project-status status-work">Working</span>
-                </div>
-                <div class="project-body">
-                    <div class="tech-tags">
-                        <span class="tech-tag">Laravel</span>
-                        <span class="tech-tag">MySQL</span>
-                        <span class="tech-tag">Bootstrap</span>
-                    </div>
-                    <div class="project-links">
-                        <a href="#" class="project-link">
-                            <i class="fas fa-eye"></i> Demo
-                        </a>
-                        <a href="#" class="project-link">
-                            <i class="fab fa-github"></i> GitHub
-                        </a>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Project 3 -->
-            <div class="project-card" style="animation-delay: 0.2s;">
-                <div class="project-header">
-                    <h3 class="project-name">Task Manager</h3>
-                    <span class="project-status status-idea">Planning</span>
-                </div>
-                <div class="project-body">
-                    <div class="tech-tags">
-                        <span class="tech-tag">React</span>
-                        <span class="tech-tag">Node.js</span>
-                        <span class="tech-tag">MongoDB</span>
-                    </div>
-                    <div class="project-links">
-                        <a href="#" class="project-link">
-                            <i class="fas fa-eye"></i> Demo
-                        </a>
-                        <a href="#" class="project-link">
-                            <i class="fab fa-github"></i> GitHub
-                        </a>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Project 4 -->
-            <div class="project-card" style="animation-delay: 0.3s;">
-                <div class="project-header">
-                    <h3 class="project-name">Weather App</h3>
-                    <span class="project-status status-done">Done</span>
-                </div>
-                <div class="project-body">
-                    <div class="tech-tags">
-                        <span class="tech-tag">JavaScript</span>
-                        <span class="tech-tag">API</span>
-                        <span class="tech-tag">Chart.js</span>
-                    </div>
-                    <div class="project-links">
-                        <a href="#" class="project-link">
-                            <i class="fas fa-eye"></i> Demo
-                        </a>
-                        <a href="#" class="project-link">
-                            <i class="fab fa-github"></i> GitHub
-                        </a>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Project 5 -->
-            <div class="project-card" style="animation-delay: 0.4s;">
-                <div class="project-header">
-                    <h3 class="project-name">Restaurant System</h3>
-                    <span class="project-status status-done">Done</span>
-                </div>
-                <div class="project-body">
-                    <div class="tech-tags">
-                        <span class="tech-tag">PHP</span>
-                        <span class="tech-tag">MySQL</span>
-                        <span class="tech-tag">Bootstrap</span>
-                    </div>
-                    <div class="project-links">
-                        <a href="#" class="project-link">
-                            <i class="fas fa-eye"></i> Demo
-                        </a>
-                        <a href="#" class="project-link">
-                            <i class="fab fa-github"></i> GitHub
-                        </a>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Project 6 -->
-            <div class="project-card" style="animation-delay: 0.5s;">
-                <div class="project-header">
-                    <h3 class="project-name">Student Management System</h3>
-                    <span class="project-status status-done">Done</span>
-                </div>
-                <div class="project-body">
-                    <div class="tech-tags">
-                        <span class="tech-tag">Java</span>
-                        <span class="tech-tag">MySQL</span>
-                        <span class="tech-tag">Swing</span>
-                    </div>
-                    <div class="project-links">
-                        <a href="#" class="project-link">
-                            <i class="fas fa-eye"></i> Demo
-                        </a>
-                        <a href="#" class="project-link">
-                            <i class="fab fa-github"></i> GitHub
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Navigation Menu -->
     <nav>
         <ul>
             <li><a href="index.html">Home</a></li>
@@ -475,93 +197,64 @@
     </nav>
 
     <script>
-        // Script for managing projects and interactions
-        document.addEventListener('DOMContentLoaded', function() {
-            // Enhanced hover effect for project cards
-            const projectCards = document.querySelectorAll('.project-card');
-            projectCards.forEach(card => {
-                card.addEventListener('mouseenter', function() {
-                    this.style.transform = 'translateY(-8px)';
-                });
+    /* ============================================== */
+    /* ==     BAGIAN 4: LOGIC JAVASCRIPT BARU        == */
+    /* ============================================== */
+    document.addEventListener('DOMContentLoaded', () => {
+
+        // Data proyek tetap menjadi "Single Source of Truth"
+        const projectsData = [
+            { name: 'Personal Portfolio', status: 'Done', tech: ['HTML', 'CSS', 'JS'], demoUrl: 'https://hikinarou.github.io', githubUrl: 'https://github.com/HikiNarou/hikinarou.github.io' },
+            { name: 'E-Commerce Web', status: 'Work', tech: ['Laravel', 'MySQL', 'Bootstrap'], demoUrl: '#', githubUrl: '#' },
+            { name: 'Task Manager App', status: 'Idea', tech: ['React', 'Node.js', 'MongoDB'], demoUrl: '#', githubUrl: '#' },
+            { name: 'Weather App', status: 'Done', tech: ['JavaScript', 'API', 'Chart.js'], demoUrl: '#', githubUrl: '#' },
+            { name: 'Restaurant System', status: 'Done', tech: ['PHP', 'MySQL', 'Bootstrap'], demoUrl: '#', githubUrl: '#' },
+            { name: 'Student Management System', status: 'Done', tech: ['Java', 'MySQL', 'Swing'], demoUrl: '#', githubUrl: '#' }
+        ];
+
+        const tableBody = document.getElementById('projects-table-body');
+        
+        // Fungsi untuk meng-generate dan merender semua baris proyek
+        function renderTableRows() {
+            // Kosongkan tabel sebelum mengisi ulang
+            tableBody.innerHTML = '';
+            
+            // Loop melalui data dan buat baris untuk setiap proyek
+            projectsData.forEach((project, index) => {
+                const row = document.createElement('tr');
                 
-                card.addEventListener('mouseleave', function() {
-                    this.style.transform = 'translateY(0)';
-                });
+                // Mapping status ke class CSS
+                const statusClassMap = { 'Done': 'status-done', 'Work': 'status-work', 'Idea': 'status-idea' };
+                const statusClass = statusClassMap[project.status] || 'status-idea';
+
+                // Membuat HTML untuk tag teknologi
+                const techTagsHTML = project.tech.map(t => `<span class="tech-tag">${t}</span>`).join('');
+                
+                // Mengisi HTML untuk setiap baris (tr)
+                row.innerHTML = `
+                    <td class="project-name">${project.name}</td>
+                    <td><div class="tech-tags">${techTagsHTML}</div></td>
+                    <td><span class="status-badge ${statusClass}">${project.status}</span></td>
+                    <td>
+                        <div class="action-links">
+                            <a href="${project.demoUrl}" class="action-link" title="Live Demo" target="_blank" rel="noopener noreferrer"><i class="fas fa-eye"></i></a>
+                            <a href="${project.githubUrl}" class="action-link" title="GitHub Repository" target="_blank" rel="noopener noreferrer"><i class="fab fa-github"></i></a>
+                        </div>
+                    </td>
+                `;
+
+                // Menambahkan animasi staggered
+                row.style.animationDelay = `${index * 0.1}s`;
+
+                tableBody.appendChild(row);
             });
-
-            // Navigation active state
-            const navLinks = document.querySelectorAll('nav a');
-            const currentPage = window.location.pathname.split('/').pop();
-            
-            navLinks.forEach(link => {
-                link.classList.remove('active');
-                if (link.getAttribute('href') === currentPage) {
-                    link.classList.add('active');
-                }
-            });
-
-            // Simple click feedback for links
-            const projectLinks = document.querySelectorAll('.project-link');
-            projectLinks.forEach(link => {
-                link.addEventListener('click', function(e) {
-                    if (this.href.endsWith('#')) {
-                        e.preventDefault();
-                        this.style.transform = 'scale(0.95)';
-                        setTimeout(() => {
-                            this.style.transform = 'scale(1)';
-                        }, 100);
-                    }
-                });
-            });
-
-            console.log('🚀 Simplified Portfolio Page loaded!');
-        });
-
-        // Function to add new projects
-        function addProject(name, techArray, status, demoLink, githubLink) {
-            const projectsGrid = document.getElementById('projectsGrid');
-            const newCard = document.createElement('div');
-            newCard.className = 'project-card';
-            
-            // Determine status class
-            const statusClass = status === 'Done' ? 'status-done' : 
-                              status === 'Working' ? 'status-work' : 'status-idea';
-            
-            // Create tech tags HTML
-            const techTags = techArray.map(tech => 
-                `<span class="tech-tag">${tech}</span>`
-            ).join('');
-            
-            // Set HTML content
-            newCard.innerHTML = `
-                <div class="project-header">
-                    <h3 class="project-name">${name}</h3>
-                    <span class="project-status ${statusClass}">${status}</span>
-                </div>
-                <div class="project-body">
-                    <div class="tech-tags">
-                        ${techTags}
-                    </div>
-                    <div class="project-links">
-                        <a href="${demoLink}" class="project-link">
-                            <i class="fas fa-eye"></i> Demo
-                        </a>
-                        <a href="${githubLink}" class="project-link">
-                            <i class="fab fa-github"></i> GitHub
-                        </a>
-                    </div>
-                </div>
-            `;
-            
-            // Set animation delay
-            newCard.style.animationDelay = `${projectsGrid.children.length * 0.1}s`;
-            
-            // Add to grid
-            projectsGrid.appendChild(newCard);
         }
 
-        // Example usage:
-        // addProject('Blog Platform', ['Next.js', 'Tailwind', 'MongoDB'], 'Working', '#', '#');
+        // Panggil fungsi untuk merender tabel saat halaman dimuat
+        renderTableRows();
+
+        console.log('🚀 Portfolio page completely refactored with a classic table view!');
+    });
     </script>
 </body>
 </html>
